@@ -50,6 +50,10 @@ form{
   margin: 0;
 }
 
+#form-container {
+  box-shadow: var(--shadow);
+}
+
 label{
   display: block;
   font-size: 12pt;
@@ -152,6 +156,11 @@ button.btn-special:hover{
 .bg-dark{
   background-color: var(--dark);
 }
+/* mine */
+.bg-dark-lighten{
+  background-color: var(--dark-lighten);
+}
+
 .text-light{
   color: var(--light)
 }
@@ -257,6 +266,10 @@ button.btn-special:hover{
 
 .w-50{
   width: 50%;
+}
+
+.object-center {
+  margin: 1em auto;
 }
 
 .text-center{

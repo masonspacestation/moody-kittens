@@ -14,17 +14,10 @@
 <body>
   <header class="bg-dark d-flex align-items-center p-1 space-between">
     <img src="moody-logo.png" height="60" alt="Moody Kittens">
-    <form class="" onsubmit="addKitten(event)">
-      <div class="d-flex">
-        <input placeholder="Name" type="text" name="name" />
-        <button class="btn-special" type="submit">
-          /ᐠ｡ꞈ｡ᐟ\
-        </button>
-      </div>
-    </form>
   </header>
+
   <main class="container">
-    <div id="welcome" class="d-flex justify-content-center">
+    <!-- <div id="welcome" class="d-flex justify-content-center">
       <div class="card p-2 text-center w-50">
         <img src="moody-logo.png" height="250" alt="Moody Kittens">
         <div class="mt-2">
@@ -35,13 +28,42 @@
           <button onclick="getStarted()">Get Started</button>
         </div>
       </div>
-    </div>
+    </div> -->
+  <div class="w-50 bg-dark-lighten d-flex p-1 object-center space-between" id="form-container">
+    <form class="" onsubmit="addKitten(event)">
+      <div class="d-flex">
+        <input placeholder="Kitten Name" type="text" name="name" />
+        <label for="mood-selector">Mood:</label>
+          <select name="mood" id="mood-selector">
+            <option value="happy">Happy</option>
+            <option value="tolerant">Tolerant</option>
+            <option value="angry">Angry</option>
+            <option value="gone">Gone</option>
+          </select>
+        </div>
+        <button class="btn-special" type="submit">
+          /ᐠ｡ꞈ｡ᐟ\
+        </button>
+    </form>
+  </div>
+
+
+
     <div class="p-2">
-      <div id="kittens" class="d-flex align-items-center flex-wrap">
+      <div id="kittens" class="w-50 object-center align-items-center flex-wrap">
+        <div class="card kitten gone">
+          <img src="Moody Kittens image_1.png" alt="image of kitten">
+        </div>
+        <div class="card kitten happy">
+          <img src="Moody Kittens image_1.png" alt="image of kitten">
+        </div>
       </div>
   </main>
+
+
+
   <footer class="card bg-dark text-light p-2 d-flex align-items-center justify-content-center">
-    <small>Created with <span style="color: var(--primary)">&hearts;</span> by CodeWorks</small>
+    <!-- <small>Created with <span style="color: var(--primary)">&hearts;</span> by CodeWorks</small> -->
   </footer>
 
   <script src="app.js"></script>

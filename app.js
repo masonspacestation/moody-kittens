@@ -84,7 +84,7 @@ kittens.forEach(kitten => {
   `
 })
 if 
-  (kittens){
+  (kittens.length !== 0){
     document.getElementById("scram-cats").classList.remove("hidden")
 }
 kittensListElement.innerHTML = template

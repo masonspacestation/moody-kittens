@@ -1,5 +1,10 @@
+let name = {}
+
+let foundKitten = {}
+let newKitten = {}
 let kittens = []
 loadKittens()
+
 /**
  * Called when submitting the new Kitten Form
  * This method will pull data from the form
@@ -11,13 +16,24 @@ function addKitten(event) {
   event.preventDefault()
   let form = event.target
 
-  let kitten = {
-    id: generateId(),
-    name: form.name.value,
-    mood: form.mood.value,
-  }
-  kittens.push(kitten)
+  let name = form.name.value
+  newKitten = kittens.find(kitten => kitten.name == name)
+
+  if (!newKitten) {
+    newKitten = {
+      id: generateId(),
+        name: form.name.value,
+        mood: form.mood.value,
+        affection: form.mood.value === "happy" ? 7:
+                   form.mood.value === "tolerant" ? 5:
+                   form.mood.value === "angry" ? 3: 2     
+      }
+  kittens.push(newKitten)
   saveKittens()
+  document.getElementById("scram-cats").classList.remove("hidden")
+} else {
+  alert("Meeeooow!" + name + " is already here. . . you're gonna have to pick another name meow.");
+}
   form.reset()
 }
 
@@ -46,7 +62,32 @@ function loadKittens() {
  * Draw all of the kittens to the kittens element
  */
 function drawKittens() {
-  
+  let kittensListElement = document.getElementById("kitten-collection")
+  let template = ""
+
+kittens.forEach(kitten => {
+  template +=  `
+
+  <div class="kitten ${kitten.mood} cat-card object-center">
+    <div class="d-flex justify-content-center">
+      <img class="m-2" src="Moody-Kittens-image.png" alt="image of kitten">
+    </div>
+   
+    <h3 class="kitten-name text-center">${kitten.name}</h3>
+    <h5 id="active-mood" class="kitten-mood text-center">${kitten.mood}</h6>
+    
+    <div class="center-object">
+      <button onclick="pet('${kitten.id}')" class="">Pet</button>
+      <button onclick="catnip('${kitten.id}')" class="">Catnip</button>
+    </div>
+  </div>
+  `
+})
+if 
+  (kittens){
+    document.getElementById("scram-cats").classList.remove("hidden")
+}
+kittensListElement.innerHTML = template
 }
 
 
@@ -68,6 +109,20 @@ function findKittenById(id) {
  * @param {string} id 
  */
 function pet(id) {
+  let foundKitten = kittens.find(kitten => kitten.id === id)
+  
+  let affection = Math.random();
+  if (affection > .5) {
+    foundKitten.affection += .5;
+  } else {
+    foundKitten.affection -= .5;
+  }
+    foundKitten.mood = (foundKitten.affection >= 6) ? "happy":
+                (foundKitten.affection < 6 && foundKitten.affection >= 5) ? "tolerant":
+                (foundKitten.affection < 5 && foundKitten.affection >= 4) ? "angry": "gone";
+  console.log("pet", foundKitten);
+  setKittenMood(foundKitten, affection)
+  saveKittens()
 }
 
 /**
@@ -77,20 +132,34 @@ function pet(id) {
  * @param {string} id
  */
 function catnip(id) {
+  let foundKitten = kittens.find(kitten => kitten.id === id);
+  foundKitten.mood = "tolerant";
+  foundKitten.affection = 5;
+  console.log("catnip", foundKitten);
+  setKittenMood(foundKitten, foundKitten.affection)
+  saveKittens()
 }
 
 /**
  * Sets the kittens mood based on its affection
  * @param {Kitten} kitten 
  */
-function setKittenMood(kitten) {
+function setKittenMood(foundKitten) {
+                console.log("setMood", foundKitten.affection, foundKitten.mood)   
+  drawKittens()
 }
-
 /**
  * Removes all of the kittens from the array
  * remember to save this change
  */
-function clearKittens(){
+function clearKittens() {
+    if (confirm("This will shoo all the kitties away. Sure you wanna do that meow?"))
+    { 
+      kittens.splice(0)
+      saveKittens()
+      document.getElementById("scram-cats").classList.add("hidden")
+     } else {
+  } 
 }
 
 /**
@@ -107,7 +176,7 @@ function getStarted() {
 
 /**
  * Defines the Properties of a Kitten
- * @typedef {{id:sting, name: string, mood: string, affection: number}} Kitten
+ * @typedef {{id:string, name: string, mood: string, affection: number}} Kitten
  */
 
 
@@ -121,3 +190,4 @@ function generateId() {
 }
 
 loadKittens()
+drawKittens()

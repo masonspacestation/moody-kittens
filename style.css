@@ -7,7 +7,7 @@
   --primary-darken: #6f8639;
   --bg: #e0d9d9;
   --shadow: 2px 0 5px rgba(49, 49, 49, 0.5);
-  --corners: 0;
+  --corners: 5px;
   --text-color: #3a3838;
   --dark: #3a3838;
   --dark-lighten: #504c4c;
@@ -42,14 +42,22 @@ p{
   margin: .5em 0;
 }
 
+h3 {
+  color: var(--light);
+  background-color: var(--primary-darken);
+}
+
 img{
   max-width: 100%;
 }
 
 form{
   margin: 0;
+  width: 100%;
+  gap: 15px;
 }
 
+/* mine */
 #form-container {
   box-shadow: var(--shadow);
 }
@@ -60,7 +68,7 @@ label{
 }
 
 input{
-  width: 100%;
+  width: 60%;
   padding: .375rem .75rem;
   font-size: 1rem;
   color: var(--light);
@@ -116,6 +124,12 @@ button.btn-special:focus{
 button.btn-special:hover{
   color: var(--primary);
 }
+button.danger {
+  background-color: var(--dark);
+  color: var(--danger);
+  width: 60%;
+  margin: auto;
+}
 .container{
   margin: 0 .5em;
 }
@@ -127,10 +141,18 @@ button.btn-special:hover{
   border-radius: var(--corners);
 }
 
+.cat-card{
+  background-color: var(--light);
+  padding: 1em;
+  box-shadow: var(--shadow);
+  border-radius: var(--corners);
+  width: calc(50% - 2em);
+  margin: 1em;
+}
+
 .shadow{
   filter: drop-shadow(var(--shadow));
 }
-
 
 .kitten img{
   filter: drop-shadow(2px 4px 6px #1b1b1b);
@@ -139,7 +161,7 @@ button.btn-special:hover{
 .kitten.happy img{
   filter: drop-shadow(2px 4px 6px #00ffb3);
 }
-.kitten.tolerant img{
+.kitten.tolerant{
   filter: drop-shadow(2px 4px 6px #646464);
 }
 .kitten.angry img{
@@ -202,6 +224,10 @@ button.btn-special:hover{
 }
 .d-flex.justify-content-center{
   justify-content: center;
+}
+
+.d-flex.distribute-items {
+  gap: 50px;
 }
 
 .mt-1{
@@ -268,8 +294,26 @@ button.btn-special:hover{
   width: 50%;
 }
 
+/* mine */
 .object-center {
   margin: 1em auto;
+}
+
+.kitten-name {
+  font-family: "Climate Crisis", sans-serif;
+}
+
+.kitten-mood {
+  font-family: "Barrio", sans-serif;
+}
+
+#kitten-collection {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+label {
+  color: var(--light);
 }
 
 .text-center{
